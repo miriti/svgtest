@@ -2,22 +2,30 @@
 
 <polymer-element name="svg-component">
     <template>
-        <svg width="400" viewBox="0 0 400 400">
-            <defs>
-                <symbol id="usingSymbol" viewBox="-25 -25 50 50">
-                    <circle r="25" fill="#afa"></circle>
-                    <text x="-25" y="5">
-                        Symbol
-                    </text>
-                </symbol>
-            </defs>
+        <div id="content">
+            <svg width="400" viewBox="0 0 400 400">
+                <defs>
+                    <symbol id="usingSymbol" viewBox="-25 -25 50 50">
+                        <circle r="25" fill="#afa"></circle>
+                        <text x="-25" y="5">
+                            Symbol
+                        </text>
+                    </symbol>
+                </defs>
 
-            <rect width="400" height="400" fill="#ccc"></rect>
+                <rect width="400" height="400" fill="#ccc"></rect>
 
-            <use xlink:href="#usingSymbol" x="100" y="100" width="100"></use>
-        </svg>
+                <use xlink:href="#usingSymbol" x="100" y="100" width="100"></use>
+            </svg>
+        </div>
     </template>
     <script>
-        Polymer({});
+        Polymer({
+            domReady: function () {
+                this.async(function () {
+                    this.injectBoundHTML(this.$.content.innerHTML, this.$.content);
+                }, this);
+            }
+        });
     </script>
 </polymer-element>
